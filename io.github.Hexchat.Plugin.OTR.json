@@ -1,0 +1,79 @@
+{
+  "id": "io.github.Hexchat.Plugin.OTR",
+  "branch": "2",
+  "runtime": "io.github.Hexchat",
+  "runtime-version": "stable",
+  "sdk": "org.gnome.Sdk//3.28",
+  "build-extension": true,
+  "separate-locales": false,
+  "appstream-compose": false,
+  "build-options": {
+    "prefix": "/app/extensions/OTR",
+    "prepend-pkg-config-path": "/app/extensions/OTR/lib/pkgconfig",
+    "prepend-path": "/app/extensions/OTR/bin"
+  },
+  "modules": [
+    {
+      "name": "gcrypt-wrapper",
+      "buildsystem": "simple",
+      "cleanup": ["*"],
+      "build-commands": [
+        "install -Dm755 libgcrypt-config ${FLATPAK_DEST}/bin/libgcrypt-config"
+      ],
+      "sources": [
+        {
+          "type": "script",
+          "dest-filename": "libgcrypt-config",
+          "commands": [
+            "if [ $1 == '--version' ]; then set -- '--modversion' ${@:4}; fi",
+            "exec pkg-config $@ libgcrypt"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "libotr",
+      "config-opts": [
+        "--disable-static"
+      ],
+      "cleanup": [
+        "/bin",
+        "/lib/pkgconfig",
+        "/include",
+        "/share",
+        "/lib/*.la"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://otr.cypherpunks.ca/libotr-4.1.1.tar.gz",
+          "sha256": "8b3b182424251067a952fb4e6c7b95a21e644fbb27fbd5f8af2b2ed87ca419f5"
+        }
+      ]
+    },
+    {
+      "name": "hexchat-otr",
+      "config-opts": [
+        "--disable-static"
+      ],
+      "cleanup": [
+        "*.la"
+      ],
+      "post-install": [
+        "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo io.github.Hexchat.Plugin.OTR.metainfo.xml",
+        "appstream-compose --basename=io.github.Hexchat.Plugin.OTR --prefix=${FLATPAK_DEST} --origin=flatpak io.github.Hexchat.Plugin.OTR"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/TingPing/hexchat-otr/releases/download/0.2.2/hexchat-otr-0.2.2.tar.xz",
+          "sha256": "e18425f4b20447caddf64a9079b8750200100e158a03575d89457bb6d8f8d5f1"
+        },
+        {
+          "type": "file",
+          "path": "io.github.Hexchat.Plugin.OTR.metainfo.xml"
+        }
+      ]
+    }
+  ]
+}
