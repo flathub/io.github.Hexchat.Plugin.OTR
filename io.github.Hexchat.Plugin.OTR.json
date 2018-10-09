@@ -1,9 +1,9 @@
 {
   "id": "io.github.Hexchat.Plugin.OTR",
-  "branch": "2",
+  "branch": "18.08",
   "runtime": "io.github.Hexchat",
   "runtime-version": "stable",
-  "sdk": "org.gnome.Sdk//3.28",
+  "sdk": "org.freedesktop.Sdk//18.08",
   "build-extension": true,
   "separate-locales": false,
   "appstream-compose": false,
@@ -13,24 +13,6 @@
     "prepend-path": "/app/extensions/OTR/bin"
   },
   "modules": [
-    {
-      "name": "gcrypt-wrapper",
-      "buildsystem": "simple",
-      "cleanup": ["*"],
-      "build-commands": [
-        "install -Dm755 libgcrypt-config ${FLATPAK_DEST}/bin/libgcrypt-config"
-      ],
-      "sources": [
-        {
-          "type": "script",
-          "dest-filename": "libgcrypt-config",
-          "commands": [
-            "if [ $1 == '--version' ]; then set -- '--modversion' ${@:4}; fi",
-            "exec pkg-config $@ libgcrypt"
-          ]
-        }
-      ]
-    },
     {
       "name": "libotr",
       "config-opts": [
