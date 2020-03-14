@@ -1,9 +1,9 @@
 {
   "id": "io.github.Hexchat.Plugin.OTR",
-  "branch": "18.08",
+  "branch": "19.08",
   "runtime": "io.github.Hexchat",
   "runtime-version": "stable",
-  "sdk": "org.freedesktop.Sdk//18.08",
+  "sdk": "org.freedesktop.Sdk//19.08",
   "build-extension": true,
   "separate-locales": false,
   "appstream-compose": false,
