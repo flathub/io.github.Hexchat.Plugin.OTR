@@ -1,9 +1,9 @@
 {
   "id": "io.github.Hexchat.Plugin.OTR",
-  "branch": "19.08",
+  "branch": "20.08",
   "runtime": "io.github.Hexchat",
   "runtime-version": "stable",
-  "sdk": "org.freedesktop.Sdk//19.08",
+  "sdk": "org.gnome.Sdk//40",
   "build-extension": true,
   "separate-locales": false,
   "appstream-compose": false,
@@ -35,21 +35,23 @@
     },
     {
       "name": "hexchat-otr",
-      "config-opts": [
-        "--disable-static"
-      ],
+      "buildsystem": "meson",
+      "config-opts": ["-Dlocal_install=false"],
+      "no-make-install": true,
       "cleanup": [
         "*.la"
       ],
       "post-install": [
-        "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo io.github.Hexchat.Plugin.OTR.metainfo.xml",
+        "install -Dm755 -t ${FLATPAK_DEST} src/otr.so",
+        "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_BUILDER_BUILDDIR}/io.github.Hexchat.Plugin.OTR.metainfo.xml", 
         "appstream-compose --basename=io.github.Hexchat.Plugin.OTR --prefix=${FLATPAK_DEST} --origin=flatpak io.github.Hexchat.Plugin.OTR"
       ],
       "sources": [
         {
-          "type": "archive",
-          "url": "https://github.com/TingPing/hexchat-otr/releases/download/0.2.2/hexchat-otr-0.2.2.tar.xz",
-          "sha256": "e18425f4b20447caddf64a9079b8750200100e158a03575d89457bb6d8f8d5f1"
+          "type": "git",
+          "url": "https://github.com/TingPing/hexchat-otr.git",
+          "branch": "master",
+          "commit": "d87484724ae1dfa49cc963351e07ec96d4e705b9"
         },
         {
           "type": "file",
