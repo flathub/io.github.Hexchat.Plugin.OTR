@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="addon">
   <id>io.github.Hexchat.Plugin.OTR</id>
-  <extends>io.github.Hexchat.desktop</extends>
+  <extends>io.github.Hexchat</extends>
   <name>OTR Plugin</name>
   <summary>Adds support for Off-the-Record Messaging</summary>
   <url type="homepage">https://github.com/TingPing/hexchat-otr</url>
