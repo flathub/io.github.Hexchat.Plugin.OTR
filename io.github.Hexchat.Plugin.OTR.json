@@ -43,7 +43,7 @@
       ],
       "post-install": [
         "install -Dm755 -t ${FLATPAK_DEST} src/otr.so",
-        "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_BUILDER_BUILDDIR}/io.github.Hexchat.Plugin.OTR.metainfo.xml", 
+        "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_BUILDER_BUILDDIR}/io.github.Hexchat.Plugin.OTR.metainfo.xml",
         "appstream-compose --basename=io.github.Hexchat.Plugin.OTR --prefix=${FLATPAK_DEST} --origin=flatpak io.github.Hexchat.Plugin.OTR"
       ],
       "sources": [
@@ -51,7 +51,7 @@
           "type": "git",
           "url": "https://github.com/TingPing/hexchat-otr.git",
           "branch": "master",
-          "commit": "d87484724ae1dfa49cc963351e07ec96d4e705b9"
+          "commit": "1b1e0bbf0244704d15e90dc3f24730faf2c45cae"
         },
         {
           "type": "file",
