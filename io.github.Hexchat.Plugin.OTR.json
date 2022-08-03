@@ -42,7 +42,7 @@
         "*.la"
       ],
       "post-install": [
-        "install -Dm755 -t ${FLATPAK_DEST} src/otr.so",
+        "install -Dm755 -t ${FLATPAK_DEST}/lib/hexchat/plugins src/otr.so",
         "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_BUILDER_BUILDDIR}/io.github.Hexchat.Plugin.OTR.metainfo.xml",
         "appstream-compose --basename=io.github.Hexchat.Plugin.OTR --prefix=${FLATPAK_DEST} --origin=flatpak io.github.Hexchat.Plugin.OTR"
       ],
