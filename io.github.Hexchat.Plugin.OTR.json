@@ -1,9 +1,9 @@
 {
   "id": "io.github.Hexchat.Plugin.OTR",
-  "branch": "21.08",
+  "branch": "23.08",
   "runtime": "io.github.Hexchat",
   "runtime-version": "stable",
-  "sdk": "org.gnome.Sdk//41",
+  "sdk": "org.freedesktop.Sdk//23.08",
   "build-extension": true,
   "separate-locales": false,
   "appstream-compose": false,
@@ -15,6 +15,7 @@
   "modules": [
     {
       "name": "libotr",
+      "rm-configure": true,
       "config-opts": [
         "--disable-static"
       ],
@@ -30,6 +31,12 @@
           "type": "archive",
           "url": "https://otr.cypherpunks.ca/libotr-4.1.1.tar.gz",
           "sha256": "8b3b182424251067a952fb4e6c7b95a21e644fbb27fbd5f8af2b2ed87ca419f5"
+        },
+        {
+          "type": "shell",
+          "commands": [
+            "sed -i 's|SUBDIRS += tests||g' Makefile.am"
+          ]
         }
       ]
     },
